@@ -1,0 +1,206 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday!</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.5/typed.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="card" id="card">
+      <h1>🎉 Happy Birthday, Lor!</h1>
+      <p>Wishing you all the best in life, enjoy your day! 🍰</p>
+      <button onclick="slideCard()">Click for a Surprise!</button>
+    </div>
+    <div class="surprise hidden" id="surprise">
+        <div class="image-row">
+            <img src="image.jpg.jpeg" alt="Cake" class="animated-image" />
+            <img src="image.png.jpeg" alt="Balloons" class="animated-image middle" />
+            <img src="image.jgp2.jpeg" alt="Gift" class="animated-image" />
+        </div>
+      <p class="paragraph1"><span class="emoji">🎈</span><span id="message"></span><span class="emoji">🎈</span></p>
+      <p>"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"
+1914 translation by H. Rackham"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?"</p>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
+
+  
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  background: linear-gradient(to right, #ffecd2, #fcb69f);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.paragraph1 {
+    font-size: 32px;
+}
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  padding: 20px;
+  max-width: 100%;
+}
+
+.card {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  text-align: center;
+  max-width: 350px;
+  width: 100%;
+  transition: transform 1s ease;
+}
+
+.card.slide-left {
+  transform: translateX(-250px);
+}
+
+button {
+  background-color: #ff6f61;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin-top: 15px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #ff3b2e;
+}
+
+.hidden {
+  display: none;
+}
+
+.surprise {
+  animation: fadeIn 1s ease-out forwards;
+  text-align: center;
+  max-width: 100%;
+}
+
+.image-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.animated-image {
+  width: 180px;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+  animation: bounceIn 1s ease;
+}
+
+
+.animated-image.middle {
+  margin-top: 20px;
+}
+
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes bounceIn {
+  0% { transform: scale(0.5); opacity: 0; }
+  60% { transform: scale(1.2); opacity: 1; }
+  80% { transform: scale(0.9); }
+  100% { transform: scale(1); }
+}
+
+.card.fade-out {
+  animation: vanish 0.8s ease forwards;
+}
+
+@keyframes vanish {
+  from { opacity: 1; transform: scale(1); }
+  to { opacity: 0; transform: scale(0.8); }
+}
+
+
+function slideCard() {
+  const card = document.getElementById("card");
+  const surprise = document.getElementById("surprise");
+
+  card.classList.add("fade-out");
+
+  setTimeout(() => {
+    card.style.display = "none";
+    surprise.classList.remove("hidden");
+
+    
+    new Typed('#message', {
+      strings: [
+        "Happy Birthday, Lor!",
+        "Enjoy your day!",
+        "Take care always!",
+        "I'm so proud of you!"
+      ],
+      typeSpeed: 100,
+      backSpeed: 60,
+      loop: true
+    });
+
+
+    confetti({
+      particleCount: 150,
+      spread: 70,
+      origin: { y: 0.6 }
+    });
+
+
+    setTimeout(() => {
+      launchConfettiLoop();
+    }, 1000); 
+  }, 800);
+}
+function launchConfettiLoop() {
+  const duration = 7000; // 5 seconds
+  const end = Date.now() + duration;
+
+  (function frame() {
+    confetti({
+      particleCount: 7,
+      angle: 60,
+      spread: 55,
+      origin: { x: 0 }
+    });
+    confetti({
+      particleCount: 7,
+      angle: 120,
+      spread: 55,
+      origin: { x: 1 }
+    });
+
+    if (Date.now() < end) {
+      requestAnimationFrame(frame);
+    }
+  })();
+}
